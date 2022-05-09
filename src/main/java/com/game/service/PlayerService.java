@@ -3,6 +3,8 @@ package com.game.service;
 import com.game.entity.Player;
 import com.game.exception.BadRequestException;
 import com.game.exception.NotFoundRequestException;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.jpa.domain.Specification;
 
 public interface PlayerService {
 
@@ -17,16 +19,19 @@ public interface PlayerService {
      * pageSize – параметр, который отвечает за количество
      * результатов на одной странице при пейджинге
      *
+     * @param specification Настройки спецификации поиска
+     * @param pageable      Настройки пейджинга поиска
      * @return результатов на одной странице при пейджинге
      */
-    Iterable<Player> getPlayers();
+    Iterable<Player> getPlayers(Specification<Player> specification, Pageable pageable);
 
     /**
      * Получить количество игроков
      *
+     * @param specification Настройки спецификации поиска
      * @return Количество игроков
      */
-    Integer getPlayersCount();
+    Integer getPlayersCount(Specification<Player> specification);
 
     /**
      * Создание игрока и сохранение в БД

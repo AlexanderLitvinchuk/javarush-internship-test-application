@@ -5,6 +5,9 @@ import com.game.exception.BadRequestException;
 import com.game.exception.NotFoundRequestException;
 import com.game.repository.PlayerRepository;
 import com.game.service.PlayerService;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.jpa.domain.Specification;
 import org.springframework.stereotype.Service;
 
 import java.util.Optional;
@@ -19,14 +22,15 @@ public class PlayerServiceImpl implements PlayerService {
     }
 
     @Override
-    public Iterable<Player> getPlayers() {
-        return playerRepository.findAll();
+    public Iterable<Player> getPlayers(Specification<Player> specification, Pageable pageable) {
+        Page<Player> playerPage = playerRepository.findAll(specification, pageable);
+        return playerPage.getContent();
     }
 
     @Override
-    public Integer getPlayersCount() {
-        long count = playerRepository.count();
-        return Long.bitCount(count);
+    public Integer getPlayersCount(Specification<Player> specification) {
+        long count = playerRepository.count(specification);
+        return Math.toIntExact(count);
     }
 
     @Override

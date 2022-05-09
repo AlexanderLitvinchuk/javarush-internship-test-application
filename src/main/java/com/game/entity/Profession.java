@@ -22,9 +22,12 @@ public enum Profession {
         return nameRus;
     }
 
-    public static Profession getProfession(String nameRus) {
+    public static Profession getProfession(String name) {
+        boolean onlyLatinAlphabet = name.matches("^[a-zA-Z0-9]+$");
         return Arrays.stream(Profession.values())
-                .filter(profession -> profession.getNameRus().equals(nameRus))
+                .filter(profession -> onlyLatinAlphabet
+                        ? profession.name().equals(name)
+                        : profession.getNameRus().equals(name))
                 .findFirst()
                 .orElse(null);
     }

@@ -21,9 +21,12 @@ public enum Race {
         return nameRus;
     }
 
-    public static Race getRace(String nameRus) {
+    public static Race getRace(String name) {
+        boolean onlyLatinAlphabet = name.matches("^[a-zA-Z0-9]+$");
         return Arrays.stream(Race.values())
-                .filter(race -> race.getNameRus().equals(nameRus))
+                .filter(race -> onlyLatinAlphabet
+                        ? race.name().equals(name)
+                        : race.getNameRus().equals(name))
                 .findFirst()
                 .orElse(null);
     }

@@ -26,9 +26,12 @@ public enum PlayerOrder {
         return fieldNameRus;
     }
 
-    public static PlayerOrder getPlayerOrder(String fieldNameRus) {
+    public static PlayerOrder getPlayerOrder(String fieldName) {
+        boolean onlyLatinAlphabet = fieldName.matches("^[a-zA-Z0-9]+$");
         return Arrays.stream(PlayerOrder.values())
-                .filter(playerOrder -> playerOrder.getFieldNameRus().equals(fieldNameRus))
+                .filter(playerOrder -> onlyLatinAlphabet
+                        ? playerOrder.name().equals(fieldName)
+                        : playerOrder.getFieldNameRus().equals(fieldName))
                 .findFirst()
                 .orElse(PlayerOrder.ID);
     }

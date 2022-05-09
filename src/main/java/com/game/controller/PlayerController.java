@@ -2,6 +2,7 @@ package com.game.controller;
 
 import com.game.entity.Player;
 import com.game.service.PlayerService;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
@@ -37,5 +38,11 @@ public class PlayerController {
     @PostMapping("players/{id}")
     public Player updatePlayer(@PathVariable Long id, @RequestBody Player player) {
         return playerService.updatePlayer(id, player);
+    }
+
+    @DeleteMapping("players/{id}")
+    public ResponseEntity<Object> deletePlayer(@PathVariable Long id) {
+        playerService.deletePlayer(id);
+        return ResponseEntity.ok().build();
     }
 }

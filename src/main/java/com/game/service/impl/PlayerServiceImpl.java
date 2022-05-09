@@ -60,4 +60,9 @@ public class PlayerServiceImpl implements PlayerService {
         return playerRepository.save(playerEntity);
     }
 
+    @Override
+    public void deletePlayer(Long id) {
+        Player playerEntity = getPlayerById(id);
+        playerRepository.delete(playerEntity);
+    }
 }

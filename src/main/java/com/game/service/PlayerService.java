@@ -65,4 +65,13 @@ public interface PlayerService {
      * @throws NotFoundRequestException 404 - Игрок не найден в БД
      */
     Player updatePlayer(Long id, Player player);
+
+    /**
+     * Удаление игрока по ID
+     *
+     * @param id Идентификатор игрока
+     * @throws BadRequestException      400 - Значение id не валидное
+     * @throws NotFoundRequestException 404 - Игрок не найден в БД
+     */
+    void deletePlayer(Long id);
 }

@@ -48,9 +48,21 @@ public interface PlayerService {
      * Получить игрока по ID
      *
      * @param id Идентификатор игрока
-     * @return Игрок из базы данных
+     * @return Игрок из базы данных после сохранения
      * @throws BadRequestException      400 - Значение id не валидное
      * @throws NotFoundRequestException 404 - Игрок не найден в БД
      */
     Player getPlayerById(Long id);
+
+    /**
+     * Обновление игрока по ID.
+     * Обновлять нужно только те поля, которые не null
+     *
+     * @param id     Идентификатор игрока
+     * @param player Параметры игрока
+     * @return Игрок из базы данных после обновления
+     * @throws BadRequestException      400 - Значение id не валидное
+     * @throws NotFoundRequestException 404 - Игрок не найден в БД
+     */
+    Player updatePlayer(Long id, Player player);
 }

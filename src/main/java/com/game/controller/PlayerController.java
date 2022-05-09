@@ -33,4 +33,9 @@ public class PlayerController {
     public Player getPlayerById(@PathVariable Long id) {
         return playerService.getPlayerById(id);
     }
+
+    @PostMapping("players/{id}")
+    public Player updatePlayer(@PathVariable Long id, @RequestBody Player player) {
+        return playerService.updatePlayer(id, player);
+    }
 }

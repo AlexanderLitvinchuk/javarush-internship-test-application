@@ -44,4 +44,20 @@ public class PlayerServiceImpl implements PlayerService {
 
         return player.get();
     }
+
+    @Override
+    public Player updatePlayer(Long id, Player player) {
+        Player playerEntity = getPlayerById(id);
+
+        if (player.getName() != null) playerEntity.setName(player.getName());
+        if (player.getTitle() != null) playerEntity.setTitle(player.getTitle());
+        if (player.getRace() != null) playerEntity.setRace(player.getRace());
+        if (player.getProfession() != null) playerEntity.setProfession(player.getProfession());
+        if (player.getBirthday() != null) playerEntity.setBirthday(player.getBirthday());
+        if (player.getBanned() != null) playerEntity.setBanned(player.getBanned());
+        if (player.getExperience() != null) playerEntity.setExperience(player.getExperience());
+
+        return playerRepository.save(playerEntity);
+    }
+
 }

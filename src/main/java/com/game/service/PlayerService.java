@@ -1,6 +1,8 @@
 package com.game.service;
 
 import com.game.entity.Player;
+import com.game.exception.BadRequestException;
+import com.game.exception.NotFoundRequestException;
 
 public interface PlayerService {
 
@@ -27,7 +29,7 @@ public interface PlayerService {
     Integer getPlayersCount();
 
     /**
-     * Создание игорака и сохранение в БД
+     * Создание игрока и сохранение в БД
      * Мы не можем создать игрока, если:
      * - указаны не все параметры из Data Params (кроме banned);
      * - длина значения параметра “name” или “title” превышает размер соответствующего поля в БД (12 и 30 символов);
@@ -41,4 +43,14 @@ public interface PlayerService {
      * @return Данный сохраненного игрока
      */
     Player createPlayer(Player player);
+
+    /**
+     * Получить игрока по ID
+     *
+     * @param id Идентификатор игрока
+     * @return Игрок из базы данных
+     * @throws BadRequestException      400 - Значение id не валидное
+     * @throws NotFoundRequestException 404 - Игрок не найден в БД
+     */
+    Player getPlayerById(Long id);
 }

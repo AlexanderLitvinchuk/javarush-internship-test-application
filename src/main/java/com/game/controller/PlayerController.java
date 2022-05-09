@@ -28,4 +28,9 @@ public class PlayerController {
     public Player getPlayersCount(@RequestBody Player player) {
         return playerService.createPlayer(player);
     }
+
+    @GetMapping("players/{id}")
+    public Player getPlayerById(@PathVariable Long id) {
+        return playerService.getPlayerById(id);
+    }
 }

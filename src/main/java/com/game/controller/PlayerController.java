@@ -2,9 +2,7 @@ package com.game.controller;
 
 import com.game.entity.Player;
 import com.game.service.PlayerService;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("rest")
@@ -24,5 +22,10 @@ public class PlayerController {
     @GetMapping("players/count")
     public Integer getPlayersCount() {
         return playerService.getPlayersCount();
+    }
+
+    @PostMapping("players")
+    public Player getPlayersCount(@RequestBody Player player) {
+        return playerService.createPlayer(player);
     }
 }

@@ -24,4 +24,9 @@ public class PlayerServiceImpl implements PlayerService {
         long count = playerRepository.count();
         return Long.bitCount(count);
     }
+
+    @Override
+    public Player createPlayer(Player player) {
+        return playerRepository.save(player);
+    }
 }
